@@ -1,0 +1,71 @@
+const DEFAULT_OPTIONS = Object.freeze(Object.assign(Object.create(null), {
+    "abrupt-closing-of-empty-comment": true,
+    "absence-of-digits-in-numeric-character-reference": true,
+    "cdata-in-html-content": true,
+    "character-reference-outside-unicode-range": true,
+    "control-character-in-input-stream": true,
+    "control-character-reference": true,
+    "eof-before-tag-name": true,
+    "eof-in-cdata": true,
+    "eof-in-comment": true,
+    "eof-in-tag": true,
+    "incorrectly-closed-comment": true,
+    "incorrectly-opened-comment": true,
+    "invalid-first-character-of-tag-name": true,
+    "missing-attribute-value": true,
+    "missing-end-tag-name": true,
+    "missing-semicolon-after-character-reference": true,
+    "missing-whitespace-between-attributes": true,
+    "nested-comment": true,
+    "noncharacter-character-reference": true,
+    "noncharacter-in-input-stream": true,
+    "null-character-reference": true,
+    "surrogate-character-reference": true,
+    "surrogate-in-input-stream": true,
+    "unexpected-character-in-attribute-name": true,
+    "unexpected-character-in-unquoted-attribute-value": true,
+    "unexpected-equals-sign-before-attribute-name": true,
+    "unexpected-null-character": true,
+    "unexpected-question-mark-instead-of-tag-name": true,
+    "unexpected-solidus-in-tag": true,
+    "unknown-named-character-reference": true,
+    "end-tag-with-attributes": true,
+    "duplicate-attribute": true,
+    "end-tag-with-trailing-solidus": true,
+    "non-void-html-element-start-tag-with-trailing-solidus": false,
+    "x-invalid-end-tag": true,
+    "x-invalid-namespace": true
+}));
+
+export default {
+    meta: {
+        type: "problem",
+        description: 'Correct Vue template parsing errors.',
+        includeInReadme: true,
+        schema: [],
+        messages: {
+            "parsingError": "Parsing error: {{message}}." + " Correct this violation while preserving comments, binding scope, and behavior."
+        },
+    },
+    create(context) {
+        const ruleOptions = [];
+
+        const options = Object.assign({}, DEFAULT_OPTIONS, ruleOptions[0] || {});
+        return { Program(program) {
+            const node = program.templateBody;
+            if (node == null || node.errors == null) return;
+            for (const error of node.errors) {
+                if (error.code && !options[error.code]) continue;
+                context.report({
+                    node,
+                    loc: {
+                        line: error.lineNumber,
+                        column: error.column
+                    },
+                    data: { message: error.message.endsWith(".") ? error.message.slice(0, -1) : error.message },
+                    messageId: "parsingError"
+                });
+            }
+        } };
+    },
+};

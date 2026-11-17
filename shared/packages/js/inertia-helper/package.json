@@ -1,0 +1,14 @@
+{
+  "name": "inertia-helper",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.ts",
+    "rules:generate": "node ../../../tooling/eslint/generate-llm-rules.js",
+    "types:check": "tsc --noEmit -p tsconfig.json",
+    "lint:check": "cd .. && eslint --config ../../tooling/eslint/packages.config.js inertia-helper/src inertia-helper/rules --max-warnings 0",
+    "lint:fix": "cd .. && eslint --config ../../tooling/eslint/packages.config.js inertia-helper/src inertia-helper/rules --max-warnings 0 --fix",
+    "quality:check": "npm run lint:check && npm run types:check",
+    "quality:fix": "npm run rules:generate && npm run lint:fix && npm run types:check"
+  }
+}

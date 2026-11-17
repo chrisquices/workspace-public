@@ -1,0 +1,27 @@
+{
+  "name": "workspace-packages",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#ui-engines/*": "./ui-engines/*.ts",
+    "#ui/*.vue": "./ui/src/*.vue",
+    "#ui/*": "./ui/src/*.ts"
+  },
+  "exports": {
+    "./utilities/sort": "./utilities/src/sort.ts",
+    "./inertia-helper": "./inertia-helper/src/index.ts",
+    "./ui/base.css": "./ui/src/css/base.css",
+    "./ui/utils": "./ui/src/utils.ts",
+    "./ui/*": "./ui/src/components/*/index.ts",
+    "./ui-engines/*": "./ui-engines/*/index.ts",
+    "./ui-engines/*/types": "./ui-engines/*/types.ts",
+    "./ui-engines/*/vue": "./ui-engines/*/vue.ts",
+    "./ui-engines/shared/*": "./ui-engines/shared/*.ts",
+    "./ui-engines/partigen/pixi": "./ui-engines/partigen/pixi.ts",
+    "./ui-engines/partigen/story": "./ui-engines/partigen/story.ts",
+    "./ui-engines/selection/page-shortcuts": "./ui-engines/selection/page-shortcuts.ts"
+  },
+  "dependencies": {
+    "pixi.js": "^8.23.0"
+  }
+}

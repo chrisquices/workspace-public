@@ -1,0 +1,77 @@
+{
+  "name": "workspace",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#eslint/*": "./tooling/eslint/*"
+  },
+  "workspaces": [
+    "packages/js"
+  ],
+  "scripts": {
+    "lint:check": "eslint --config tooling/eslint/eslint.config.js . --max-warnings 0",
+    "lint:fix": "eslint --config tooling/eslint/eslint.config.js . --max-warnings 0 --fix",
+    "quality:check": "npm run lint:check",
+    "quality:fix": "npm run lint:fix"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "26.x"
+    },
+    "packageManager": {
+      "name": "npm",
+      "version": "11.x"
+    }
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@html-eslint/eslint-plugin": "^0.68.0",
+    "@laravel/vite-plugin-wayfinder": "^0.1.3",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@tailwindcss/vite": "^4.1.11",
+    "@types/node": "^22.13.5",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "@vue/eslint-config-typescript": "^14.9.0",
+    "@vue/shared": "^3.5.45",
+    "concurrently": "^10.0.3",
+    "eslint": "^10.13.0",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-import-x": "^4.17.1",
+    "eslint-plugin-vue": "^10.12.0",
+    "globals": "^17.13.0",
+    "postcss": "^8.5.32",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1",
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.4.0",
+    "vite-plus": "1.4.0",
+    "vue-eslint-parser": "10.4.2",
+    "vue-tsc": "^3.3.14"
+  },
+  "overrides": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.4.0"
+  },
+  "dependencies": {
+    "@inertiajs/vite": "^3.0.0",
+    "@inertiajs/vue3": "^3.0.0",
+    "@lucide/vue": "^1.17.0",
+    "@vueuse/core": "^12.8.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "laravel-vite-plugin": "^3.0.0",
+    "reka-ui": "^2.9.8",
+    "tailwind-merge": "^3.2.0",
+    "tailwindcss": "^4.1.1",
+    "tw-animate-css": "^1.2.5",
+    "vue": "^3.5.13"
+  },
+  "optionalDependencies": {
+    "@laravel/multiplex": "^0.4.1",
+    "@rollup/rollup-linux-x64-gnu": "4.9.5",
+    "@rollup/rollup-win32-x64-msvc": "4.9.5",
+    "@tailwindcss/oxide-linux-x64-gnu": "^4.0.1",
+    "@tailwindcss/oxide-win32-x64-msvc": "^4.0.1",
+    "lightningcss-linux-x64-gnu": "^1.29.1",
+    "lightningcss-win32-x64-msvc": "^1.29.1"
+  }
+}

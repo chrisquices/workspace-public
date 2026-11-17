@@ -1,0 +1,17 @@
+{
+    "$schema": "https://www.schemastore.org/package.json",
+    "name": "pixel",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vp build",
+        "build:ssr": "vp build && vp build --ssr",
+        "dev": "vp dev",
+        "types:check": "vue-tsc --noEmit",
+        "lint:check": "eslint --config ../../shared/tooling/eslint/eslint.config.js .",
+        "lint:fix": "eslint --config ../../shared/tooling/eslint/eslint.config.js . --fix",
+        "quality:check": "npm run lint:check && npm run types:check",
+        "quality:fix": "npm run lint:fix && npm run types:check",
+        "quality:custom:fix": "node ../../shared/tooling/eslint/run-eslint.js"
+    }
+}
